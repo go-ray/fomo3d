@@ -1,0 +1,31 @@
+{
+  "fomoapi": {
+    "host": "https://fomo3d.eu"
+  },
+  "Log": {
+    "level": "debug",
+    "path": "/tmp",
+    "file": "fomoproxy",
+    "format": "json"
+  },
+  "server": {
+    "addr": ":8080",
+    "writeTimeout": 15000000000,
+    "readTimeout": 15000000000,
+    "idleTimeout": 60000000000
+  },
+  "dbs": {
+    "default": {
+      "drivername": "mysql",
+      "datasource":
+        "exampleuser:exampleuser123@tcp(localhost:3306)/example?charset=utf8&parseTime=True&loc=Local",
+      "maxidleconns": 10,
+      "maxopenconns": 10,
+      "enable": false
+    }
+  },
+  "pprof": {
+    "enable": true,
+    "host": ":8081"
+  }
+}
