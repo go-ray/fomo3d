@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"encoding/json"
 	"net/http"
 
 	"github.com/go-ray/fomo3d/gateway"
@@ -9,12 +10,31 @@ import (
 )
 
 func NamesHandler(w http.ResponseWriter, r *http.Request) {
-	names, err := gateway.GetNames()
+	ioff, ia := getoffamount(r)
+	names := gateway.GetNames()
+	nrp := Nresp{}
+	err := json.Unmarshal(names, &nrp)
 	if err != nil {
-		logging.Error("get players err:", err)
+		logging.Error("unmarshal nresp failed:", err)
+	}
+	nlen := len(nrp.Data)
+	if ioff > nlen {
+		ioff = 0
+	}
+	if ia >= nlen {
+		ia = nlen - 1
+	}
+	rnrp := Nresp{
+		Data:  nrp.Data[ioff:ia],
+		Total: len(nrp.Data),
 	}
 
-	w.Write(names)
+	rdata, err := json.Marshal(&rnrp)
+	if err != nil {
+		logging.Error("marshal nresp failed:", err)
+	}
+
+	w.Write(rdata)
 }
 
 func KeyHolderStatsHandler(w http.ResponseWriter, r *http.Request) {
@@ -26,4 +46,16 @@ func KeyHolderStatsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Write(stats)
+}
+
+type Nresp struct {
+	Data  []nd
+	Total int
+}
+
+type nd struct {
+	Addr  string
+	Fomol bool
+	Name  string
+	Pid   int
 }

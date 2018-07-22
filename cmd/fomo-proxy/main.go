@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/go-ray/fomo3d/conf"
+	"github.com/go-ray/fomo3d/gateway"
 	"github.com/go-ray/logging"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
@@ -63,6 +64,7 @@ func start(ctx *cli.Context) {
 
 	setPprof(conf.Cfg)
 	setDatabase(conf.Cfg)
+	gateway.Init()
 
 	wait := ctx.Duration(WaitFlag.Name)
 
