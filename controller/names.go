@@ -26,6 +26,9 @@ func NamesHandler(w http.ResponseWriter, r *http.Request) {
 	if ia >= nlen {
 		ia = nlen - 1
 	}
+	if ioff == 0 && ia == 0 {
+		ia = nlen - 1
+	}
 	rnrp := Nresp{
 		Data:  nrp.Data[ioff:ia],
 		Total: len(nrp.Data),
@@ -51,13 +54,13 @@ func KeyHolderStatsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 type Nresp struct {
-	Data  []nd
-	Total int
+	Data  []nd `json:"data,omitempty"`
+	Total int  `json:"total,omitempty"`
 }
 
 type nd struct {
-	Addr  string
-	Fomol bool
-	Name  string
-	Pid   int
+	Addr  string `json:"addr,omitempty"`
+	Fomol bool   `json:"fomol,omitempty"`
+	Name  string `json:"name,omitempty"`
+	Pid   int    `json:"pid,omitempty"`
 }

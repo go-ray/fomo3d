@@ -26,6 +26,9 @@ func PlayersHandler(w http.ResponseWriter, r *http.Request) {
 	if ia >= plen {
 		ia = plen - 1
 	}
+	if ioff == 0 && ia == 0 {
+		ia = plen - 1
+	}
 
 	rprp := Presp{
 		Data:  prp.Data[ioff:ia],
@@ -45,18 +48,18 @@ func Root(w http.ResponseWriter, r *http.Request) {
 }
 
 type Presp struct {
-	Data  []pd
-	Total int
+	Data  []pd `json:"data,omitempty"`
+	Total int  `json:"total,omitempty"`
 }
 
 type pd struct {
-	A   string
-	I   string
-	K   string
-	P   int
-	R   string
-	Re  string
-	Ti  int
-	Tr  int
-	Tre int
+	A   string `json:"a,omitempty"`
+	I   string `json:"i,omitempty"`
+	K   string `json:"k,omitempty"`
+	P   int    `json:"p,omitempty"`
+	R   string `json:"r,omitempty"`
+	Re  string `json:"re,omitempty"`
+	Ti  int    `json:"ti,omitempty"`
+	Tr  int    `json:"tr,omitempty"`
+	Tre int    `json:"tre,omitempty"`
 }
