@@ -17,10 +17,12 @@ func NamesHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		logging.Error("unmarshal nresp failed:", err)
 	}
+
 	nlen := len(nrp.Data)
-	if ioff > nlen {
+	if ioff >= nlen {
 		ioff = 0
 	}
+	ia += ioff
 	if ia >= nlen {
 		ia = nlen - 1
 	}

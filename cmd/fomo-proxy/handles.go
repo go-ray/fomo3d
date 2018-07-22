@@ -10,9 +10,9 @@ import (
 
 func setHandles(r *mux.Router) {
 	r.HandleFunc("/", controller.Root).Methods("GET")
-	r.HandleFunc("/api/players", controller.PlayersHandler).Methods("GET")
+	r.HandleFunc("/api/players", controller.PlayersHandler).Queries("offset", "{offset}").Queries("num", "{amount}").Methods("GET")
 	r.HandleFunc("/api/players/{offset}/{amount}", controller.PlayersHandler).Methods("GET")
-	r.HandleFunc("/api/names", controller.NamesHandler).Methods("GET")
+	r.HandleFunc("/api/names", controller.NamesHandler).Queries("offset", "{offset}", "num", "{amount}").Methods("GET")
 	r.HandleFunc("/api/names/{offset}/{amount}", controller.NamesHandler).Methods("GET")
 	r.HandleFunc("/api/keyHolderStats", controller.KeyHolderStatsHandler).Queries("address", "{address}").Methods("GET")
 }

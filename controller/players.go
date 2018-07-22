@@ -17,10 +17,12 @@ func PlayersHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		logging.Error("unmarshal presp failed:", err)
 	}
+
 	plen := len(prp.Data)
-	if ioff > plen {
+	if ioff >= plen {
 		ioff = 0
 	}
+	ia += ioff
 	if ia >= plen {
 		ia = plen - 1
 	}
