@@ -54,13 +54,13 @@ func KeyHolderStatsHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 type Nresp struct {
-	Data  []nd `json:"data,omitempty"`
-	Total int  `json:"total,omitempty"`
+	Data  []nd `json:"data"`
+	Total int  `json:"total"`
 }
 
 type nd struct {
-	Addr  string `json:"addr,omitempty"`
-	Fomol bool   `json:"fomol,omitempty"`
-	Name  string `json:"name,omitempty"`
-	Pid   int    `json:"pid,omitempty"`
+	Addr  string `json:"addr"`
+	Fomol bool   `json:"fomol"`
+	Name  string `json:"name"`
+	Pid   int    `json:"pid"`
 }

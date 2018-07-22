@@ -48,18 +48,18 @@ func Root(w http.ResponseWriter, r *http.Request) {
 }
 
 type Presp struct {
-	Data  []pd `json:"data,omitempty"`
-	Total int  `json:"total,omitempty"`
+	Data  []pd `json:"data"`
+	Total int  `json:"total"`
 }
 
 type pd struct {
-	A   string `json:"a,omitempty"`
-	I   string `json:"i,omitempty"`
-	K   string `json:"k,omitempty"`
-	P   int    `json:"p,omitempty"`
-	R   string `json:"r,omitempty"`
-	Re  string `json:"re,omitempty"`
-	Ti  int    `json:"ti,omitempty"`
-	Tr  int    `json:"tr,omitempty"`
-	Tre int    `json:"tre,omitempty"`
+	A   string `json:"a"`
+	I   string `json:"i"`
+	K   string `json:"k"`
+	P   int    `json:"p"`
+	R   string `json:"r"`
+	Re  string `json:"re"`
+	Ti  int    `json:"ti"`
+	Tr  int    `json:"tr"`
+	Tre int    `json:"tre"`
 }
